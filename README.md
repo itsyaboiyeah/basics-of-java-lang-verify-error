@@ -34,7 +34,7 @@ Exception Details:
 
 From this you can play around and come to understand the contents of the error.
 
-The above error can be got by being in the 'compiledAndBroken' directory, and running `java Main`. The contents of 'compiledAndBroken' are the result (for my Java setup) of compiling Main.java and modifying the byte 05 at position 0x2c6 in the A.class file to be 0f. What does this do?
+The above error can be got by being in the 'compiledAndBroken' directory, and running `java Main`. The contents of 'compiledAndBroken' are the result (for my Java setup which was using Java 11) of compiling Main.java and modifying the byte 05 at position 0x2c6 in the A.class file to be 0f. What does this do?
 
 This 05 byte is part of the definition of the stack map of the exception handler in the 'f' method of the class A, 00 05 refers to the 5th index of the constant pool of the class, which is 'D', which matches up with the line `D d = new D();`. By changing it to 00 0f, we now making it be the 15th index in the constant pool, which is 'C' (i.e. referring to the class C). Hence the error telling us `Type 'D' (current frame, locals[2]) is not assignable to 'C' (stack map, locals[2])`.
 
